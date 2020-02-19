@@ -273,6 +273,11 @@
                 clearInterval(my_second_interval);
             },1000);
         }
+        window.addEventListener("keypress", (e)=>{
+            if(e.keyCode == 13){
+                updateToFireBase()
+            }
+        })
 
         //Firestore function
         db.collection('chat-app').orderBy("time").onSnapshot(snapshot => {
