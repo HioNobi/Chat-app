@@ -216,7 +216,7 @@
 
         const updateToFireBase = () => {
             let now = new Date();
-            let time_now = `${now.getHours()}:${now.getMinutes()} ${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
+            let time_now = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} ${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
             db.collection(collection).add({
                 id: `${user}-message-${getMessageNumber(user)}`,
                 sendUser: user,
