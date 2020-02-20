@@ -175,7 +175,7 @@
 
         //Do some stuff before use
         window.onload = () => {
-            let confirmUser = prompt("Who are you(Tuan Anh, Trung Hieu, Hai Phong, Quoc Loc, Cao Minh):");
+            let confirmUser = prompt("What is your name:");
             user = confirmUser;
             hostUser.innerHTML = confirmUser;
 
@@ -271,7 +271,7 @@
                 textList.scrollTop = textList.scrollHeight;
                 console.log("running")
                 clearInterval(my_second_interval);
-            },1000);
+            },500);
         }
         window.addEventListener("keypress", (e)=>{
             if(e.keyCode == 13){
