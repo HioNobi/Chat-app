@@ -17,17 +17,16 @@
                 background-color: white;
                 position: absolute;
                 top:100px;
-                left:450px;
+                left:405px;
                 width: 510px;
                 height:475px;
                 overflow: hidden;
                 border-radius: 0px 5px 5px 0px;
-                
             }
             #user-name{
                 position: absolute;
                 top:100px;
-                left:295px; 
+                left:235px; 
                 width:170px;
                 height:475px;
                 background-color: #0048AA;
@@ -53,13 +52,13 @@
             }
             .message-user{
                 font-size: 15px;
-                margin: 10px 0px 0px 370px;
+                margin: 10px 0px 0px 400px;
                 color:rgb(173, 173, 173);
                 max-width: 100px;
             }
             .message{
                 font-size: 18px;
-                margin: 0px 0px 0px 250px;
+                margin: 0px 0px 0px 290px;
                 background-color: #0048AA;
                 color:white;
                 padding: 8px;
@@ -68,7 +67,7 @@
             }
             .message-time{
                 font-size: 15px;
-                margin: 0px 0px 0px 325px;
+                margin: 0px 0px 0px 365px;
             }
 
             .partner-message-user{
@@ -91,14 +90,21 @@
             }
             .chatting-user{
                 font-size: 15px;
-                margin: -15px 0px 0px 330px;
+                margin: -15px 0px 0px 10px;
+                color:rgb(173, 173, 173);
+                max-width: 200px;
+            }
+            #sending-status{
+                font-size: 15px;
+                margin: -15px 0px 0px 380px;
                 color:rgb(173, 173, 173);
                 max-width: 200px;
             }
         </style>
     </head>
     <body style="background-color: black;">
-        <div class="container" style="position: relative;">
+        <div class="container" style="position: relative;margin-top: 0;">
+            <h1 class="display-4 text-center text-white" style="margin: 0;">Homework Chat App</h1>
             <div id="user-name" class="card">
                 <div class="card-header users-name" style="height: 45px;" id="host-user"></div>
 
@@ -111,9 +117,10 @@
             </div>
             <div id="text-area" class="card">
                 <div class="card-header" style="height: 45px;background-color: whitesmoke;"><h1 class="lead display-5" style="color:#002C88;font-weight: bold;">Quẩy nát Web Intensive</h1></div>
-                <ul id="text-list" style="list-style:none;height: 365px;overflow: auto;">
+                <ul id="text-list" style="list-style:none;height: 365px;overflow: auto;padding:10px">
 
                 </ul>
+                <h9 id="sending-status" class="lead"></h9>
                 <div class="input-group mb-3" style="position: fixed;bottom: 67px;width: 508px">
                     <input type="text" class="form-control" placeholder="Text...." id="input-message">
                     <div class="input-group-append">
@@ -144,6 +151,7 @@
         let sendButton = document.getElementById("send-button");
         let textList = document.getElementById("text-list");
         let bottomGroup = document.getElementById("text-area");
+        let sendingStatus = document.getElementById("sending-status");
         let collection = 'chat-app';
         let typing = false;
         let chattingUser = document.createElement("h1");
@@ -216,16 +224,17 @@
 
         const updateToFireBase = () => {
             let now = new Date();
-            let time_now = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} ${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
+            let time_now = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
             db.collection(collection).add({
                 id: `${user}-message-${getMessageNumber(user)}`,
                 sendUser: user,
                 message: inputMessage.value,
                 time: time_now
             })
+            sendingStatus.innerHTML = "Sended";
         }
 
-        const sendMessage = (message, time, sendUser) =>{
+        const writeMessage = (message, time, sendUser) =>{
             if(sendUser == user){
                 let messageChild = document.createElement("li");
                 let messageUser = document.createElement("h1");
@@ -235,6 +244,7 @@
                 messageUser.innerHTML = sendUser;
                 messageText.innerHTML = message;
                 messageTime.innerHTML = time;
+                sendingStatus.innerHTML = "Partners received";
 
                 messageUser.className = "lead message-user";
                 messageText.className = "message";
@@ -256,6 +266,7 @@
                 messageUser.innerHTML = sendUser;
                 messageText.innerHTML = message;
                 messageTime.innerHTML = time;
+                sendingStatus.innerHTML = "";
 
                 messageUser.className = "lead partner-message-user";
                 messageText.className = "partner-message";
@@ -284,7 +295,7 @@
             let changes = snapshot.docChanges();
             changes.forEach(change => {
                 if(change.type == 'added' || change.type == 'modified'){
-                    sendMessage(change.doc.data().message, change.doc.data().time, change.doc.data().sendUser);
+                    writeMessage(change.doc.data().message, change.doc.data().time, change.doc.data().sendUser);
                 }
             })
         })
