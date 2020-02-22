@@ -58,7 +58,7 @@
             }
             .message{
                 font-size: 18px;
-                margin: 0px 0px 0px 290px;
+                margin: 0px 0px 0px 270px;
                 background-color: #0048AA;
                 color:white;
                 padding: 8px ;
@@ -184,8 +184,8 @@
         //Do some stuff before use
         window.onload = () => {
             let confirmUser = prompt("What is your name:");
-            user = confirmUser;
-            hostUser.innerHTML = confirmUser;
+            user = (confirmUser == null || confirmUser == "") ? "User" : confirmUser ;
+            hostUser.innerHTML = user;
 
             my_interval = setInterval(() => {
                 textList.scrollTop = textList.scrollHeight;
