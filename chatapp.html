@@ -100,6 +100,29 @@
                 color:rgb(173, 173, 173);
                 max-width: 200px;
             }
+            .upload-btn-wrapper {
+                position: relative;
+                overflow: hidden;
+                display: inline-block;
+            }
+
+            .upload-btn {
+                margin-top: 5px;
+                border: 2px solid rgb(40, 201, 255);
+                color: rgb(40, 201, 255);
+                background-color: white;
+                padding: 7px;
+                border-radius: 5px;
+                font-size: 15px;
+            }
+
+            .upload-btn-wrapper input[type=file] {
+                font-size: 100px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+            }
         </style>
     </head>
     <body style="background-color: black;">
@@ -122,6 +145,10 @@
                 </ul>
                 <h9 id="sending-status" class="lead"></h9>
                 <div class="input-group mb-3" style="position: fixed;bottom: 67px;width: 508px">
+                    <div class="upload-btn-wrapper">
+                        <i class="fas fa-plus-circle upload-btn"></i>
+                        <input type="file" name="myfile" id="import-image-btn"/>
+                    </div>
                     <input type="text" class="form-control" placeholder="Text...." id="input-message">
                     <div class="input-group-append">
                         <button class="btn btn-warning" id="send-button" onclick="updateToFireBase()"><i class="fas fa-paper-plane"></i></button>
@@ -152,6 +179,8 @@
         let textList = document.getElementById("text-list");
         let bottomGroup = document.getElementById("text-area");
         let sendingStatus = document.getElementById("sending-status");
+        let importImageBtn = document.getElementById("import-image-btn");
+        let userImportedImg = document.querySelector('#myImg'); 
         let collection = 'chat-app';
         let typing = false;
         let chattingUser = document.createElement("h1");
@@ -198,7 +227,7 @@
             if(inputMessage.value == ""){
                 // bottomGroup.removeChild(chattingUser);    
                 sendButton.disabled = true;
-                bottomGroup.removeChild(chattingUser);
+                // bottomGroup.removeChild(chattingUser);
                 typing = false;
             }else{
                 if(!typing){
@@ -213,6 +242,15 @@
         },100);
 
         //Some function
+        importImageBtn.addEventListener('change', function() {
+            if (this.files && this.files[0]) { 
+                let newImage = document.createElement("img");
+                newImage.src = URL.createObjectURL(this.files[0]);
+                newImage.style.maxWidth = "100px";
+                newImage.style.maxHeight = "80px";
+                bottomGroup.insertBefore(newImage, bottomGroup.children[3]);
+            }
+        });
         const getMessageNumber = (user) =>{
             for(let i = 0; i < userNumberList.length; i++){
                 if(userNumberList[i].name == user){
