@@ -11,12 +11,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <style>
             #text-area{
                 background-color: white;
                 position: absolute;
-                top:100px;
+                top:140px;
                 left:405px;
                 width: 510px;
                 height:475px;
@@ -25,7 +26,7 @@
             }
             #user-name{
                 position: absolute;
-                top:100px;
+                top:140px;
                 left:235px; 
                 width:170px;
                 height:475px;
@@ -123,36 +124,114 @@
                 top: 0;
                 opacity: 0;
             }
+
+            #img-wrap{
+                display: flex;
+                position: absolute;
+                bottom:9%;
+                width:270px;
+                border: 3px solor lightblue;
+                border-radius: 2px;
+                overflow:auto
+            }
         </style>
     </head>
     <body style="background-color: black;">
         <div class="container" style="position: relative;margin-top: 0;">
             <h1 class="display-4 text-center text-white" style="margin: 0;">Homework Chat App</h1>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Login
-            </button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Button trigger modal -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto" id="reul">
+                    <li class="nav-item active">
+                        <button type="button" class="btn btn-primary px-5 mr-2" data-toggle="modal" data-target="#loginModal" title="Click to login">
+                            Login
+                        </button>
+                    </li>
+                    <li class="nav-item active">
+                        <button type="button" class="btn btn-primary px-5" data-toggle="modal" data-target="#registerModal" title="Click to create an account">
+                            Register
+                        </button>
+                    </li>
+                    <li class="nav-item active">
+                        <button type="button" class="btn btn-danger px-5 ml-2" title="Click to sign out" id="logout-btn">
+                            Logout
+                        </button>
+                    </li>
+                  </ul>
+                </div>
+            </nav>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="loginModalLabel">Login to begin chatting</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                      </button>
+                    </button>
                     </div>
                     <div class="modal-body">
-                      ...
+                        <form id="login-form">
+                            <div class="form-group">
+                              <label for="loginEmail">Email address:</label>
+                              <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                              <label for="loginPassword">Password:</label>
+                              <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="loginCheck">
+                              <label class="form-check-label" for="loginCheck">Remember password</label>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="login-btn">Login</button>
                     </div>
-                  </div>
                 </div>
-              </div>
+                </div>
+            </div>
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Create your own account for free</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="register-form">
+                            <div class="form-group">
+                              <label for="registerEmail">Email address:</label>
+                              <input type="email" class="form-control" id="registerEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                              <label for="registerPassword">Password:</label>
+                              <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+                              <label for="re-registerPassword">Enter password again:</label>
+                              <input type="password" class="form-control" id="re-registerPassword" placeholder="Password">
+                            </div>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="registerCheck">
+                              <label class="form-check-label" for="registerCheck">I agree with terms and licenses</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="register-btn">Register</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
             <div id="user-name" class="card">
                 <div class="card-header users-name" style="height: 45px;" id="host-user"></div>
-
                 <div class="card users" style="height:fit-content">
                     <h1 class="card-title users-name" >Quẩy nát Web Intensive</h1>
                     <hr style="margin: 0;">
@@ -166,14 +245,17 @@
 
                 </ul>
                 <h9 id="sending-status" class="lead"></h9>
-                <div class="input-group mb-3" style="position: fixed;bottom: 67px;width: 508px">
+                <div id="img-wrap" class="container">
+
+                </div>
+                <div class="input-group mb-3" style="position: fixed;bottom: -1%;width: 508px">
                     <div class="upload-btn-wrapper">
-                        <i class="fas fa-plus-circle upload-btn"></i>
+                        <i class="fas fa-plus-circle upload-btn" title="Upload your file"></i>
                         <input type="file" name="myfile" id="import-image-btn"/>
                     </div>
-                    <input type="text" class="form-control" placeholder="Text...." id="input-message">
+                    <input type="text" class="form-control" placeholder="Text...." id="input-message" title="Type your message here">
                     <div class="input-group-append">
-                        <button class="btn btn-warning" id="send-button" onclick="updateToFireBase()"><i class="fas fa-paper-plane"></i></button>
+                        <button class="btn btn-warning" id="send-button" onclick="updateToFireBase()" title="Click to send your message"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>
@@ -181,7 +263,7 @@
     </body>
     <script>
         // Initialize Firebase
-        var firebaseConfig = {
+        const firebaseConfig = {
             apiKey: "AIzaSyCgP7DuT88MMOpnfxnc8S7qz7QRgFu2HQI",
             authDomain: "learnfirebase-ffcc2.firebaseapp.com",
             databaseURL: "https://learnfirebase-ffcc2.firebaseio.com",
@@ -192,6 +274,7 @@
         };
         firebase.initializeApp(firebaseConfig);
         db = firebase.firestore();
+        const auth = firebase.auth()
 
         //Define some variables
         let user = "";
@@ -201,8 +284,21 @@
         let textList = document.getElementById("text-list");
         let bottomGroup = document.getElementById("text-area");
         let sendingStatus = document.getElementById("sending-status");
+
         let importImageBtn = document.getElementById("import-image-btn");
         let userImportedImg = document.querySelector('#myImg'); 
+        let imgWrapper = document.getElementById("img-wrap");
+
+        let registerEmail = document.getElementById("registerEmail");
+        let registerPassword= document.getElementById("registerPassword");
+        let registerBtn = document.getElementById("register-btn");
+        let registerForm = document.getElementById("register-form");
+
+        let loginEmail = document.getElementById("loginEmail");
+        let loginPassword= document.getElementById("loginPassword");
+        let loginBtn = document.getElementById("login-btn");
+        let loginForm = document.getElementById("login-form");
+
         let collection = 'chat-app';
         let typing = false;
         let chattingUser = document.createElement("h1");
@@ -266,11 +362,20 @@
         //Some function
         importImageBtn.addEventListener('change', function() {
             if (this.files && this.files[0]) { 
+
                 let newImage = document.createElement("img");
                 newImage.src = URL.createObjectURL(this.files[0]);
                 newImage.style.maxWidth = "100px";
                 newImage.style.maxHeight = "80px";
-                bottomGroup.insertBefore(newImage, bottomGroup.children[3]);
+                newImage.style.marginRight = "5px";
+
+                let newDeleteBtn = document.createElement("button");
+                newDeleteBtn.className = "btn btn-danger btn-circle btn-sm ";
+                newDeleteBtn.style.zIndex = '1';
+                newDeleteBtn.innerHTML = "x";
+
+                imgWrapper.append(newImage);
+                imgWrapper.append(newDeleteBtn);
             }
         });
         const getMessageNumber = (user) =>{
@@ -358,6 +463,36 @@
                     writeMessage(change.doc.data().message, change.doc.data().time, change.doc.data().sendUser);
                 }
             })
+        })
+        //Authentication function
+        registerBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            auth.createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(cred => {
+                alert("You have successfully signed up!")
+                registerForm.reset();
+            }).catch(function(error) {
+                alert(error.message);
+            });
+        })
+
+        loginBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(cred => {
+                alert("You have successfully logined")
+                registerForm.reset();
+            }).catch(function(error) {
+                alert(error.message);
+            });
+        })
+        
+        document.getElementById("logout-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                alert("You have successfully signed out!")
+            })
+            .catch(function(error) {
+                alert(error.message);
+            });
         })
     </script>
 </html>
