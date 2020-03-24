@@ -299,6 +299,7 @@
         let loginBtn = document.getElementById("login-btn");
         let loginForm = document.getElementById("login-form");
 
+        let emailRE = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
         let collection = 'chat-app';
         let typing = false;
         let chattingUser = document.createElement("h1");
@@ -343,9 +344,8 @@
 
         setInterval(() => {
             if(inputMessage.value == ""){
-                // bottomGroup.removeChild(chattingUser);    
+                bottomGroup.removeChild(chattingUser);    
                 sendButton.disabled = true;
-                // bottomGroup.removeChild(chattingUser);
                 typing = false;
             }else{
                 if(!typing){
@@ -459,7 +459,7 @@
             },500);
         }
         window.addEventListener("keypress", (e)=>{
-            if(e.keyCode == 13){
+            if(e.keyCode == 13 && inputMessage.value != ""){
                 updateToFireBase()
             }
         })
@@ -478,7 +478,8 @@
             e.preventDefault();
             auth.createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(cred => {
                 alert("You have successfully signed up!")
-                registerForm.reset();
+                registerEmail.value = "";
+                registerPassword = "";
             }).catch(function(error) {
                 alert(error.message);
             });
@@ -486,9 +487,10 @@
 
         loginBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(cred => {
-                alert("You have successfully logined")
-                registerForm.reset();
+            auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(cred => {typing
+                alert("You have successfully logined");
+                loginEmail.value = "";
+                loginPassword.value = "";
             }).catch(function(error) {
                 alert(error.message);
             });
