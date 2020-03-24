@@ -362,20 +362,29 @@
         //Some function
         importImageBtn.addEventListener('change', function() {
             if (this.files && this.files[0]) { 
-
                 let newImage = document.createElement("img");
                 newImage.src = URL.createObjectURL(this.files[0]);
                 newImage.style.maxWidth = "100px";
                 newImage.style.maxHeight = "80px";
-                newImage.style.marginRight = "5px";
+                newImage.id = "pic" + newImage.src;
 
                 let newDeleteBtn = document.createElement("button");
-                newDeleteBtn.className = "btn btn-danger btn-circle btn-sm ";
+                newDeleteBtn.className = "btn btn-danger btn-circle btn-sm";
                 newDeleteBtn.style.zIndex = '1';
                 newDeleteBtn.innerHTML = "x";
+                newDeleteBtn.style.maxHeight = "40px";
+                newDeleteBtn.style.padding = '5px';
+                newDeleteBtn.style.marginRight = "5px";
+                newDeleteBtn.id = "del" + newImage.src;
 
                 imgWrapper.append(newImage);
                 imgWrapper.append(newDeleteBtn);
+
+                newDeleteBtn.addEventListener("click", (e) => {
+                    let delId = "pic" + e.target.id.substr(3);
+                    document.getElementById(delId).remove();
+                    e.target.remove();
+                })
             }
         });
         const getMessageNumber = (user) =>{
