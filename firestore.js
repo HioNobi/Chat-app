@@ -1,6 +1,7 @@
 //Firestore function
 const setUpMessage = (state) => {
     if(state){
+        canSendMessage = true;
         db.collection('chat-app').orderBy("time").onSnapshot(snapshot => {
             let changes = snapshot.docChanges();
             changes.forEach(change => {
@@ -11,5 +12,6 @@ const setUpMessage = (state) => {
         })
     } else{
         $("#text-list").empty();
+        canSendMessage = false;
     }
 }

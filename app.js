@@ -71,6 +71,9 @@ const updateToFireBase = () => {
 }
 
 const writeMessage = (message, time, sendUser) =>{
+    if(!canSendMessage){
+        return;
+    }
     let messageChild = document.createElement("li");
     let messageUser = document.createElement("h1");
     let messageText = document.createElement("h1");

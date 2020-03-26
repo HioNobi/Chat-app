@@ -44,6 +44,7 @@ let emailRE = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
 let collection = 'chat-app';
 let typing = false;
 let chattingUser = document.createElement("h1");
+let canSendMessage = true;
 
 //Import notification sound effect
 const notificationSound = new Audio("sharp.mp3");
