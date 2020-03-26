@@ -12,6 +12,11 @@ firebase.initializeApp(firebaseConfig);
 db = firebase.firestore();
 const auth = firebase.auth();
 
+//Prevent user forgeting to sign out
+window.onload = () => {
+    auth.signOut();
+};
+
 //Define "some"(many) variables
 let user = "";
 let hostUser = document.getElementById("host-user");

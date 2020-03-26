@@ -1,4 +1,13 @@
 //Authentication function
+auth.onAuthStateChanged(user => {
+    if(user) {
+        setUpMessage(true);
+    }else{
+        setUpMessage(false);
+    }
+})
+
+
 registerBtn.addEventListener("click", (e) => {
     e.preventDefault();
     auth.createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(cred => {

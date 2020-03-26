@@ -67,6 +67,7 @@ const updateToFireBase = () => {
         time: time_now
     })
     sendingStatus.innerHTML = "Sended";
+    console.log(Array.from($("#img-wrap img")));
 }
 
 const writeMessage = (message, time, sendUser) =>{
@@ -100,10 +101,10 @@ const writeMessage = (message, time, sendUser) =>{
 
     my_second_interval = setInterval(() => {
         textList.scrollTop = textList.scrollHeight;
-        console.log("running")
         clearInterval(my_second_interval);
     },500);
 }
+
 window.addEventListener("keypress", (e)=>{
     if(e.keyCode == 13 && inputMessage.value != ""){
         updateToFireBase()
