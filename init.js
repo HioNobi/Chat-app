@@ -14,9 +14,7 @@ const auth = firebase.auth();
 
 //Prevent user forgeting to sign out
 $(document).ready(function() {
-    auth.signOut().then(() => {
-        alert();
-    })
+    auth.signOut();
 });
 
 //Define "some"(many) variables
