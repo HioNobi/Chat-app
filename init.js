@@ -11,6 +11,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 db = firebase.firestore();
 const auth = firebase.auth();
+const provider = new firebase.auth.FacebookAuthProvider();
 
 //Prevent user forgeting to sign out
 $(document).ready(function() {
@@ -39,6 +40,7 @@ let loginEmail = document.getElementById("loginEmail");
 let loginPassword= document.getElementById("loginPassword");
 let loginBtn = document.getElementById("login-btn");
 let loginForm = document.getElementById("login-form");
+let fbLoginBtn = document.getElementById("fb-login-btn");
 
 let emailRE = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
 let collection = 'chat-app';

@@ -70,7 +70,8 @@ const updateToFireBase = () => {
     console.log(Array.from($("#img-wrap img")));
 }
 
-const writeMessage = (message, time, sendUser) =>{
+const writeMessage = (message, time, sendUser, last) =>{
+    
     if(!canSendMessage){
         return;
     }
@@ -78,10 +79,12 @@ const writeMessage = (message, time, sendUser) =>{
     let messageUser = document.createElement("h1");
     let messageText = document.createElement("h1");
     let messageTime = document.createElement("h9");
+    let lastUserMessage = document.getElementById("last-user-message");
 
     messageUser.innerHTML = sendUser;
     messageText.innerHTML = message;
     messageTime.innerHTML = time;
+    lastUserMessage.innerHTML = last;
     if(sendUser != user){
         notificationSound.play();
         sendingStatus.innerHTML = "";
