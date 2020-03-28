@@ -7,7 +7,6 @@ window.onload = () => {
         textList.scrollTop = textList.scrollHeight;
         clearInterval(my_interval);
     },500);
-    console.log("ready")
 }
 
 setInterval(() => {
@@ -61,17 +60,17 @@ importImageBtn.addEventListener('change', function() {
 const updateToFireBase = () => {
     let now = new Date();
     let time_now = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+    let extra = now.getTime();
     db.collection(collection).add({
         sendUser: user,
         message: inputMessage.value,
-        time: time_now
+        time: time_now,
+        extra_time: extra
     })
     sendingStatus.innerHTML = "Sended";
-    console.log(Array.from($("#img-wrap img")));
 }
 
 const writeMessage = (message, time, sendUser, last) =>{
-    
     if(!canSendMessage){
         return;
     }

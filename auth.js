@@ -14,7 +14,6 @@ fbLoginBtn.addEventListener("click", (e) => {
         // The signed-in user info.
         var user = result.user;
         // ...
-        console.log("DOne!")
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
