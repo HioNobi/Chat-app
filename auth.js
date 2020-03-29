@@ -53,6 +53,13 @@ const signIn = () => {
 
 registerBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    if(registerCheck.checked == false){
+        alert("Please agree with terms and licenses");
+        return;
+    }else if(registerEmail.value.toLowerCase() != registerEmail.value){
+        alert("All letters must be in lowercase");
+        return;
+    }
     signUp();
 })
 
@@ -65,6 +72,13 @@ window.addEventListener("keypress", (e)=>{
     if(e.keyCode == 13 && inputMessage.value != ""){
         updateToFireBase()
     }else if(e.keyCode == 13 && (registerEmail.value != "" && registerPassword.value != "")){
+        if(registerCheck.checked == false){
+            alert("Please agree with terms and licenses");
+            return;
+        }else if(registerEmail.value.toLowerCase() != registerEmail.value){
+            alert("All letters must be in lowercase");
+            return;
+        }
         registerBtn.click();
     }else if(e.keyCode == 13 && (loginEmail.value != "" && loginPassword.value != "")){
         loginBtn.click();

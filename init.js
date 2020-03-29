@@ -37,6 +37,7 @@ let registerPassword= document.getElementById("registerPassword");
 let registerBtn = document.getElementById("register-btn");
 let registerForm = document.getElementById("registerModal");
 let registerUserName = document.getElementById("ip-username");
+let registerCheck = document.getElementById("registerCheck");
 
 let loginEmail = document.getElementById("loginEmail");
 let loginPassword= document.getElementById("loginPassword");

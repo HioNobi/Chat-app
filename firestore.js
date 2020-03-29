@@ -4,7 +4,6 @@ const setUpMessage = (state, userName) => {
         canSendMessage = true;
 
         db.collection("users").doc(userName.uid).get().then(doc => {
-            console.log("abc")
             hostUser.innerHTML = doc.data().username
             user = doc.data().username
         })
@@ -14,7 +13,7 @@ const setUpMessage = (state, userName) => {
                     writeMessage(doc.data().message, doc.data().time, doc.data().sendUser, doc.data().message);
                 });
             });
-        },1000)
+        },2000)
     } else{
         hostUser.innerHTML = "";
         user = '';
