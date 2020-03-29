@@ -25,7 +25,7 @@ window.onload = () => {
     my_interval = setInterval(() => {
         textList.scrollTop = textList.scrollHeight;
         clearInterval(my_interval);
-    },500);
+    },1000);
 }
 
 //Define "some"(many) variables
