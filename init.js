@@ -19,15 +19,18 @@ let hostUser = document.getElementById("host-user");
 $(document).ready(function() {
     auth.signOut();
 });
+
 window.onload = () => {
-    hostUser.innerHTML = "";
-    user = "";
     my_interval = setInterval(() => {
         textList.scrollTop = textList.scrollHeight;
         clearInterval(my_interval);
     },1000);
 }
 
+setTimeout(() => {
+    hostUser.innerHTML = "";
+    user = "";
+},2000)
 //Define "some"(many) variables
 let inputMessage = document.getElementById("input-message");
 let sendButton = document.getElementById("send-button");

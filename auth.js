@@ -97,7 +97,5 @@ document.getElementById("logout-btn").addEventListener("click", (e) => {
 
 window.addEventListener('beforeunload', function (e) {
     e.preventDefault();
-    auth.signOut().then(() => {
-        alert("You forgot to sign out :(, but don't worry because we did that for you :)")
-    })
+    auth.signOut();
 });
