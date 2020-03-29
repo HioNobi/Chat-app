@@ -15,6 +15,7 @@ const setUpMessage = (state, userName) => {
         });
     } else{
         hostUser.innerHTML = "";
+        user = '';
         $("#text-list").empty();
         canSendMessage = false;
     }
