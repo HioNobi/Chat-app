@@ -1,10 +1,3 @@
-window.onload = () => {
-    my_interval = setInterval(() => {
-        textList.scrollTop = textList.scrollHeight;
-        clearInterval(my_interval);
-    },500);
-}
-
 setInterval(() => {
     if(inputMessage.value == ""){
         if(typing){

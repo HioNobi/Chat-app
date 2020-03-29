@@ -13,7 +13,7 @@ const setUpMessage = (state, userName) => {
                     writeMessage(doc.data().message, doc.data().time, doc.data().sendUser, doc.data().message);
                 });
             });
-        },2000)
+        },1000)
     } else{
         hostUser.innerHTML = "";
         user = '';

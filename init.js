@@ -18,9 +18,15 @@ let hostUser = document.getElementById("host-user");
 //Prevent user forgeting to sign out
 $(document).ready(function() {
     auth.signOut();
+});
+window.onload = () => {
     hostUser.innerHTML = "";
     user = "";
-});
+    my_interval = setInterval(() => {
+        textList.scrollTop = textList.scrollHeight;
+        clearInterval(my_interval);
+    },500);
+}
 
 //Define "some"(many) variables
 let inputMessage = document.getElementById("input-message");
