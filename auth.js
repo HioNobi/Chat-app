@@ -94,3 +94,8 @@ document.getElementById("logout-btn").addEventListener("click", (e) => {
         alert(error.message);
     });
 })
+
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    auth.signOut();
+});
