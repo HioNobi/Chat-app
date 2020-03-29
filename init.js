@@ -30,6 +30,7 @@ window.onload = () => {
 setTimeout(() => {
     hostUser.innerHTML = "";
     user = "";
+    console.log("ok")
 },2000)
 //Define "some"(many) variables
 let inputMessage = document.getElementById("input-message");
