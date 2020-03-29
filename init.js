@@ -21,6 +21,7 @@ $(document).ready(function() {
 //Define "some"(many) variables
 let user = "";
 let hostUser = document.getElementById("host-user");
+hostUser.innerHTML = "";
 let inputMessage = document.getElementById("input-message");
 let sendButton = document.getElementById("send-button");
 let textList = document.getElementById("text-list");

@@ -4,15 +4,17 @@ const setUpMessage = (state, userName) => {
         canSendMessage = true;
 
         db.collection("users").doc(userName.uid).get().then(doc => {
+            console.log("abc")
             hostUser.innerHTML = doc.data().username
             user = doc.data().username
         })
-
-        db.collection("chat-app").orderBy("extra_time").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                writeMessage(doc.data().message, doc.data().time, doc.data().sendUser, doc.data().message);
+        setTimeout(() => {
+            db.collection("chat-app").orderBy("extra_time").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    writeMessage(doc.data().message, doc.data().time, doc.data().sendUser, doc.data().message);
+                });
             });
-        });
+        },1000)
     } else{
         hostUser.innerHTML = "";
         user = '';
