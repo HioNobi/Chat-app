@@ -1,9 +1,9 @@
 //Authentication function
 auth.onAuthStateChanged(user => {
     if(user) {
-        setUpMessage(true);
+        setUpMessage(true, user);
     }else{
-        setUpMessage(false);
+        setUpMessage(false, user);
     }
 })
 
@@ -26,27 +26,48 @@ fbLoginBtn.addEventListener("click", (e) => {
     });
 })
 
-
-registerBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+const signUp = () => {
     auth.createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(cred => {
+        return db.collection("users").doc(cred.user.uid).set({
+            username: registerUserName.value
+        })
+    }).then(() => {
         alert("You have successfully signed up!")
         registerEmail.value = "";
         registerPassword = "";
     }).catch(function(error) {
         alert(error.message);
     });
-})
+}
 
-loginBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(cred => {typing
+const signIn = () => {
+    auth.signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(cred => {
         alert("You have successfully logined");
         loginEmail.value = "";
         loginPassword.value = "";
     }).catch(function(error) {
         alert(error.message);
     });
+}
+
+registerBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    signUp();
+})
+
+loginBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    signIn();
+})
+
+window.addEventListener("keypress", (e)=>{
+    if(e.keyCode == 13 && inputMessage.value != ""){
+        updateToFireBase()
+    }else if(e.keyCode == 13 && (registerEmail.value != "" && registerPassword.value != "")){
+        registerBtn.click();
+    }else if(e.keyCode == 13 && (loginEmail.value != "" && loginPassword.value != "")){
+        loginBtn.click();
+    };
 })
 
 document.getElementById("logout-btn").addEventListener("click", (e) => {

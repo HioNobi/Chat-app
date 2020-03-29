@@ -1,8 +1,4 @@
 window.onload = () => {
-    let confirmUser = prompt("What is your name:");
-    user = (confirmUser == null || confirmUser == "") ? "User" : confirmUser ;
-    hostUser.innerHTML = user;
-
     my_interval = setInterval(() => {
         textList.scrollTop = textList.scrollHeight;
         clearInterval(my_interval);
@@ -109,9 +105,3 @@ const writeMessage = (message, time, sendUser, last) =>{
         clearInterval(my_second_interval);
     },500);
 }
-
-window.addEventListener("keypress", (e)=>{
-    if(e.keyCode == 13 && inputMessage.value != ""){
-        updateToFireBase()
-    }
-})

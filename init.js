@@ -34,12 +34,13 @@ let imgWrapper = document.getElementById("img-wrap");
 let registerEmail = document.getElementById("registerEmail");
 let registerPassword= document.getElementById("registerPassword");
 let registerBtn = document.getElementById("register-btn");
-let registerForm = document.getElementById("register-form");
+let registerForm = document.getElementById("registerModal");
+let registerUserName = document.getElementById("ip-username");
 
 let loginEmail = document.getElementById("loginEmail");
 let loginPassword= document.getElementById("loginPassword");
 let loginBtn = document.getElementById("login-btn");
-let loginForm = document.getElementById("login-form");
+let loginForm = document.getElementById("loginModal");
 let fbLoginBtn = document.getElementById("fb-login-btn");
 
 let emailRE = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"

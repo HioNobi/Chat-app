@@ -1,13 +1,19 @@
 //Firestore function
-const setUpMessage = (state) => {
+const setUpMessage = (state, user) => {
     if(state){
         canSendMessage = true;
+
+        db.collection("users").doc(user.uid).get().then(doc => {
+            hostUser.innerHTML = doc.data().username
+        })
+
         db.collection("chat-app").orderBy("extra_time").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 writeMessage(doc.data().message, doc.data().time, doc.data().sendUser, doc.data().message);
             });
         });
     } else{
+        hostUser.innerHTML = "";
         $("#text-list").empty();
         canSendMessage = false;
     }
