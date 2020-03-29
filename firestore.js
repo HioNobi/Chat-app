@@ -1,10 +1,11 @@
 //Firestore function
-const setUpMessage = (state, user) => {
+const setUpMessage = (state, userName) => {
     if(state){
         canSendMessage = true;
 
-        db.collection("users").doc(user.uid).get().then(doc => {
+        db.collection("users").doc(userName.uid).get().then(doc => {
             hostUser.innerHTML = doc.data().username
+            user = doc.data().username
         })
 
         db.collection("chat-app").orderBy("extra_time").get().then((querySnapshot) => {
