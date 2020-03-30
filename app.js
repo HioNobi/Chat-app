@@ -73,7 +73,6 @@ const writeMessage = (message, time, sendUser, last) =>{
     messageText.innerHTML = message;
     messageTime.innerHTML = time;
     lastUserMessage.innerHTML = last;
-    console.log(user, sendUser)
     if(sendUser != user){
         notificationSound.play();
         sendingStatus.innerHTML = "";
