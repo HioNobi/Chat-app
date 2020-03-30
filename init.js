@@ -11,7 +11,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 db = firebase.firestore();
 const auth = firebase.auth();
-const provider = new firebase.auth.FacebookAuthProvider();
+const g_provider = new firebase.auth.GoogleAuthProvider();
+const fb_provider = new firebase.auth.FacebookAuthProvider();
 
 let user = "";
 let hostUser = document.getElementById("host-user");
@@ -55,6 +56,7 @@ let loginPassword= document.getElementById("loginPassword");
 let loginBtn = document.getElementById("login-btn");
 let loginForm = document.getElementById("loginModal");
 let fbLoginBtn = document.getElementById("fb-login-btn");
+let gLoginBtn = document.getElementById("g-login-btn");
 
 let emailRE = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
 let collection = 'chat-app';
