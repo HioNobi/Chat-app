@@ -69,7 +69,7 @@ loginBtn.addEventListener("click", (e) => {
 })
 
 window.addEventListener("keypress", (e)=>{
-    if(e.keyCode == 13 && inputMessage.value != ""){
+    if(e.keyCode == 13 && inputMessage.value != "" && user != ""){
         updateToFireBase()
     }else if(e.keyCode == 13 && (registerEmail.value != "" && registerPassword.value != "")){
         if(registerCheck.checked == false){

@@ -13,7 +13,9 @@ setInterval(() => {
             bottomGroup.insertBefore(chattingUser, bottomGroup.children[2]);
             typing = true;
         }
-        sendButton.disabled = false;
+        if(user != ""){
+            sendButton.disabled = false;
+        }
     }
 },100);
 
