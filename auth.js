@@ -13,7 +13,8 @@ gLoginBtn.addEventListener("click", (e) => {
             username: result.user.displayName
         })
     }).then(() => {
-        alert("You have successfully signed up!")
+        lgCloseBtn.click();
+        alert("You have successfully signed up!");
     }).catch(function(error) {
         alert(error.message);
         console.log(error.message);

@@ -57,6 +57,7 @@ let loginBtn = document.getElementById("login-btn");
 let loginForm = document.getElementById("loginModal");
 let fbLoginBtn = document.getElementById("fb-login-btn");
 let gLoginBtn = document.getElementById("g-login-btn");
+let lgCloseBtn = document.getElementById("login-close-btn");
 
 let emailRE = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
 let collection = 'chat-app';
