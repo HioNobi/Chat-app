@@ -95,8 +95,5 @@ const writeMessage = (message, time, sendUser, last) =>{
 
     inputMessage.value = "";
 
-    my_second_interval = setInterval(() => {
-        textList.scrollTop = textList.scrollHeight;
-        clearInterval(my_second_interval);
-    },500);
+    textList.scrollTop = textList.scrollHeight;
 }
