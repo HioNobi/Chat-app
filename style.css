@@ -1,0 +1,120 @@
+#text-area{
+    background-color: white;
+    position: absolute;
+    top:140px;
+    left:405px;
+    width: 510px;
+    height:475px;
+    overflow: hidden;
+    border-radius: 0px 5px 5px 0px;
+}
+#user-name{
+    position: absolute;
+    top:140px;
+    left:235px; 
+    width:170px;
+    height:475px;
+    background-color: #0048AA;
+    border-radius: 5px 0px 0px 5px;
+}
+.users{
+    height: 80px;
+    padding: 5px;
+    border-radius: 0;
+    background-color: #002C88;
+    cursor: pointer;
+}
+.users:hover{
+    opacity: 0.8;
+}
+.users-content{
+    font-size: 15px;
+    color:#ddd;
+}
+.users-name{
+    font-size: 20px;
+    color:#ddd;
+}
+.message-user{
+    font-size: 7px;
+    margin: 10px 0px 0px 280px;
+    color:rgb(173, 173, 173);
+    max-width: 100px;
+}
+.message{
+    font-size: 18px;
+    margin: 0px 0px 0px 270px;
+    background-color: #0048AA;
+    color:white;
+    padding: 8px ;
+    max-width: 200px;
+    border-radius: 5px;
+}
+.message-time{
+    font-size: 15px;
+    margin: 0px 0px 0px 345px;
+}
+
+.partner-message-user{
+    font-size: 15px;
+    margin: 10px 0px 0px 0px;
+    color:rgb(173, 173, 173);
+    max-width: 100px;
+}
+.partner-message{
+    font-size: 18px;
+    background-color: rgb(214, 214, 214);
+    margin: 0;
+    padding: 8px;
+    max-width: 200px;
+    border-radius: 5px;
+}
+.partner-message-time{
+    font-size: 15px;
+    margin: 0px;
+}
+.chatting-user{
+    font-size: 15px;
+    margin: -15px 0px 0px 10px;
+    color:rgb(173, 173, 173);
+    max-width: 200px;
+}
+#sending-status{
+    font-size: 15px;
+    margin: -15px 0px 0px 380px;
+    color:rgb(173, 173, 173);
+    max-width: 200px;
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn {
+    margin-top: 5px;
+    border: 2px solid rgb(40, 201, 255);
+    color: rgb(40, 201, 255);
+    background-color: white;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#img-wrap{
+    display: flex;
+    position: absolute;
+    bottom:9%;
+    width:270px;
+    border: 3px solor lightblue;
+    border-radius: 2px;
+    overflow:auto
+}
